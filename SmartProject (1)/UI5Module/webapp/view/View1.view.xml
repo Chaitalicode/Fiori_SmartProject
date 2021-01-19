@@ -1,0 +1,72 @@
+<mvc:View controllerName="ST.UI5Module.controller.View1" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true" xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartField="sap.ui.comp.smartfield" xmlns:smartForm="sap.ui.comp.smartform">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+			
+	<VBox fitContainer="true">
+	<smartForm:SmartForm id="SF1" class="editableForm" editTogglable="true" editable="true" title="xyz">
+			<smartForm:Group id="G1" label="SmartField with ValueHelp">
+            <smartForm:GroupElement id="GE-Price">
+				<smartField:SmartField contextEditable="true" width="200px" id="idSmart"   entitySet="Orders" value="{OrderID}" />
+                	</smartForm:GroupElement>
+
+                    	<smartForm:GroupElement id="GE-PriceObjectNumber">
+					<smartField:SmartField value="{OrderID}" id="idPriceObjectNumber" contextEditable="false">
+						<smartField:controlProposal>
+							<smartField:ControlProposal controlType="ObjectNumber">
+							</smartField:ControlProposal>
+						</smartField:controlProposal>
+					</smartField:SmartField>
+				</smartForm:GroupElement>
+			</smartForm:Group>
+            </smartForm:SmartForm>
+		<smartFilterBar:SmartFilterBar useToolbar="false" id="smartFilterBar" entitySet="Orders" persistencyKey="SmartFilter_Explored" useDateRangeType="true">
+        <!-- <Input showValueHelp="true" value="200"></Input> -->
+				 <smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration key="Freight" preventInitialDataFetchInValueHelpDialog="false" visibleInAdvancedArea="true">
+					<smartFilterBar:defaultFilterValues>
+							<smartFilterBar:SelectOption low="55.0900">
+							</smartFilterBar:SelectOption>
+						</smartFilterBar:defaultFilterValues>
+					</smartFilterBar:ControlConfiguration> 	 
+                    	<smartFilterBar:ControlConfiguration key="OrderDate" preventInitialDataFetchInValueHelpDialog="false" visibleInAdvancedArea="true">
+					<smartFilterBar:defaultFilterValues>
+							<smartFilterBar:SelectOption low="19 Jul 1996, 05:30:00	">
+							</smartFilterBar:SelectOption>
+						</smartFilterBar:defaultFilterValues>
+					</smartFilterBar:ControlConfiguration> 	
+				</smartFilterBar:controlConfiguration>
+				
+				<smartFilterBar:layoutData>
+					<FlexItemData shrinkFactor="0"/>
+				</smartFilterBar:layoutData> 
+              
+			</smartFilterBar:SmartFilterBar> 
+
+                    	<smartTable:SmartTable entitySet="Orders" tableType="Table" smartFilterId="smartFilterBar" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="Line Items" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" initiallyVisibleFields="ShipCountry,ShippedDate,ShipCity" enableAutoBinding="true" class="sapUiResponsiveContentPadding">
+                       <Table>
+								<columns>
+									<Column>
+										<customData>
+											<core:CustomData key="p13nData"	value='\{"columnKey": "OrderDate", "leadingProperty": "OrderDate", "columnIndex": 3, "filterProperty":"OrderDate" , "type":"date"}'/>
+										</customData>
+										<Text text="Custom Column"></Text>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem >
+                                    <!-- <ObjectStatus text="{OrderDate}"></ObjectStatus> -->
+									<DatePicker value="{OrderDate}"></DatePicker>
+									</ColumnListItem>
+								</items>
+							</Table>
+                        </smartTable:SmartTable>
+                        </VBox>
+    
+				</Page>
+
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
